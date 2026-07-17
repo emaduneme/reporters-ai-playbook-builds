@@ -64,4 +64,4 @@ Two honest tradeoffs versus the local route: Cowork's transcription happens via 
 
 ## Source
 
-Built by Emmanuel Maduneme with Claude Code and Gemini CLI. Full source, issue tracker, and updates: [github.com/emaduneme/interscriber](https://github.com/emaduneme/interscriber).
+Built by Emmanuel Maduneme with Claude Code and Gemini CLI. This packaged version lives at [reporters-ai-playbook-builds/2026-08-20-interscriber](https://github.com/emaduneme/reporters-ai-playbook-builds/tree/main/2026-08-20-interscriber); the original project, issue tracker, and ongoing updates are at [github.com/emaduneme/interscriber](https://github.com/emaduneme/interscriber).
