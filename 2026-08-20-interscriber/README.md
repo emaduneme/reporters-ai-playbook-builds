@@ -21,21 +21,21 @@ Low-cost, privacy-first transcription for journalists. Drop in an interview reco
 
 ## Get it running without touching a terminal
 
-Claude Cowork is the easiest entry point if you've never touched a terminal and don't want to start now — it's a paid-plan feature (Pro/Max/Team/Enterprise) in the Claude desktop app, web, or mobile that reads and writes your local files without you running any commands yourself. Worth knowing before you try it: Cowork executes code in an isolated environment on Anthropic's servers, not literally on your laptop, so it can't just "run our Streamlit app" the way Claude Code can — instead, describe the outcome and let it build its own path there. A prompt to paste into a Cowork task:
+If a terminal sounds like a foreign language, Claude Cowork can do the installing for you, on your own computer, step by step:
 
-> "I have an interview recording at [file path]. Transcribe it into a timestamped, speaker-labeled Markdown transcript I can quote from. Use the Groq API for transcription (I'll give you a key from console.groq.com/keys) — group the words into phrase-level lines, breaking whenever there's a silence of half a second or more or the speaker changes. Give me back a finished Markdown file."
+1. Make sure you're on a Claude Pro or Max plan, with the latest [Claude Desktop](https://claude.com/download) app installed.
+2. Turn on Computer Use: **Settings > General > Computer use**.
+3. Copy this repo's link: `https://github.com/emaduneme/reporters-ai-playbook-builds/tree/main/2026-08-20-interscriber`
+4. Open a new [Cowork](https://claude.com/product/cowork) task and paste it in, with a request like: "Clone this repo to my computer, install what it needs, and run it so I can transcribe an interview. Ask for permission wherever you need it."
+5. Claude will ask permission before opening apps like Terminal on your behalf. Approve those.
+6. This capability is a research preview, so if it stalls partway through, ask it to try again or pick up where it left off.
+7. When it's done, InterScriber should be running and open in your browser, ready for you to upload a recording.
 
-Two honest tradeoffs versus the local route: Cowork's transcription happens via a cloud API call (Groq), not fully on-device, so it doesn't carry the same "audio never leaves your machine" privacy guarantee as InterScriber's local Whisper mode — and it requires a paid Claude plan. If source protection is the priority, use one of the local options below instead.
+Because Cowork is installing the actual code below, not writing its own version, it carries the same choice between local and cloud transcription as any other install — pick local Whisper in the app if source protection matters for that recording.
 
 ## Prefer to build your own version? Use Claude Code
 
-You don't need this exact code to get the value — the pattern is what matters. If you'd rather build your own version (different transcription engine, different output format, integrated into your own newsroom's tools), open Claude Code in an empty folder and try:
-
-1. "Build a local tool that transcribes an audio file with OpenAI Whisper, outputs word-level timestamps as JSON, then groups the words into phrase-level lines broken on silence or speaker change."
-2. "Wrap that in a Streamlit web UI: file upload, an engine choice (local vs. a cloud API), a progress bar, and a download button for the final transcript."
-3. "Add a second engine option using the Groq API (`whisper-large-v3`) for near-instant cloud transcription, and let me switch between them."
-
-Claude Code will ask clarifying questions as it goes — that's normal, answer them the way you'd brief a colleague on what you actually need.
+You don't need this exact code to get the value — the pattern is what matters. If you'd rather build your own version (different transcription engine, different output format, integrated into your own newsroom's tools), open Claude Code in an empty folder and work through the three prompts in [`prompts/build-from-scratch.md`](prompts/build-from-scratch.md), in order. Claude Code will ask clarifying questions as it goes — that's normal, answer them the way you'd brief a colleague on what you actually need.
 
 ## Or install the exact code yourself
 
@@ -63,6 +63,7 @@ To enable Groq Cloud (optional, for near-instant transcription): rename `.env.ex
 - `tools/transcribe_groq.py` — Groq Cloud transcription engine
 - `tools/pack_transcripts.py` — groups word-level JSON into readable, timestamped Markdown
 - `workflows/transcribe.md` — the SOP, if you're running this by hand or adapting the pieces
+- `prompts/build-from-scratch.md` — the copy-paste prompts for building your own version with Claude Code
 
 ## Source
 
